@@ -68,6 +68,9 @@ functions:
           path: todos
           cors: true
           authorizer: Auth
+          request:
+            schema:
+              application/json: ${file(src/schemas/createTodo.json)}
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -89,7 +92,6 @@ functions:
           - "*"
 
 
-
   # DONE: Configure this function
   UpdateTodo:
     handler: src/lambda/http/updateTodo.handler
@@ -99,6 +101,9 @@ functions:
           path: todos/{todoId}
           cors: true
           authorizer: Auth
+          request:
+            schema:
+              application/json: ${file(src/schemas/updateTodo.json)}
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -119,6 +124,7 @@ functions:
           - xray:PutTraceSegments
         Resource:
           - "*"
+    
 
 
 
